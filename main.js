@@ -5,10 +5,8 @@ function selectItem(e) {
   // removeBorder();
   removeShow();
   // this.classList.add('');
-  //imi aduce itemul din DOM
   console.log(this.id);
   const tabContentItem = document.querySelector(`#${this.id}-content`);
-  //arata show class
   tabContentItem.classList.add("show");
 }
 function removeShow() {
