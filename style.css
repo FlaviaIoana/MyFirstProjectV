@@ -21,6 +21,7 @@ nav a:hover {
 }
 
 .active {
+  /* a trebuit sa folosesc important pentru a suprascrie stilurile atunci cand se activeaza */
   background-color: rgba(148, 197, 216, 0.5) !important;
   color: white !important;
 }
