@@ -1,0 +1,48 @@
+nav {
+  background-color: rgb(63, 133, 190);
+  overflow: hidden;
+  width: 100%;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+nav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+nav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+nav a.active {
+  background-color: rgba(148, 197, 216, 0.5);
+  color: white;
+}
+
+nav .icon {
+  display: none;
+}
+#faq,
+#contact {
+  padding: 10rem;
+  display: none;
+}
+.show {
+  display: block !important;
+}
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(148, 197, 216, 0.5);
+  color: #232291;
+  text-decoration: none;
+  text-align: center;
+}
