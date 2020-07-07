@@ -20,16 +20,17 @@ nav a:hover {
   color: black;
 }
 
-nav a.active {
-  background-color: rgba(148, 197, 216, 0.5);
-  color: white;
+.active {
+  background-color: rgba(148, 197, 216, 0.5) !important;
+  color: white !important;
 }
 
 nav .icon {
   display: none;
 }
-#faq,
-#contact {
+#faq-content,
+#contact-content,
+#tasks-content {
   padding: 10rem;
   display: none;
 }
