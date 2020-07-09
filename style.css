@@ -21,22 +21,19 @@ nav a:hover {
 }
 
 .active {
-  /* a trebuit sa folosesc important pentru a suprascrie stilurile atunci cand se activeaza */
-  background-color: rgba(148, 197, 216, 0.5) !important;
-  color: white !important;
+  background-color: rgba(148, 197, 216, 0.5);
+  color: white;
 }
 
 nav .icon {
   display: none;
 }
-#faq-content,
-#contact-content,
-#tasks-content {
+.tab-content-item{
   padding: 10rem;
   display: none;
 }
 .show {
-  display: block !important;
+  display: block;
 }
 footer {
   position: fixed;
