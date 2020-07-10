@@ -20,7 +20,7 @@ nav a:hover {
   color: black;
 }
 
-nav a.active {
+.active {
   background-color: rgba(148, 197, 216, 0.5);
   color: white;
 }
@@ -28,13 +28,12 @@ nav a.active {
 nav .icon {
   display: none;
 }
-#faq,
-#contact {
+.tab-content-item{
   padding: 10rem;
   display: none;
 }
 .show {
-  display: block !important;
+  display: block;
 }
 footer {
   position: fixed;
