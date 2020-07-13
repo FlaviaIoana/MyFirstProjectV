@@ -36,7 +36,53 @@ for (i = 0; i < myNodelist.length; i++) {
   span.appendChild(txt);
   myNodelist[i].appendChild(span);
 }
+function myEdit() {
+  for (i = 0; i < myNodelist.length; i++) {
+    var edit = document.createElement("SPAN");
+    var eText = document.createTextNode("\u270E");
+    edit.className = "edit";
+    edit.appendChild(eText);
+    myNodelist[i].appendChild(edit);
+    edit.onclick = function merge() {
+      var entryy = this.parentElement.childNodes[0];
+      var res = entryy.data.split(" | ");
+      var TitleText = res[0].substring(7);
+      var n = res[1].indexOf("Content: ");
+      var ContentText = res[1].substring(n + 9);
+      console.log(TitleText + '\n' + ContentText);
+      editt = document.getElementById("editt");
+      document.getElementById("myInput").value = TitleText;
+      document.getElementById("myInputContent").value = ContentText;
 
+      editt.onclick = function () {
+        var inputValue01 = document.getElementById("myInput").value;
+        var inputValue02 = document.getElementById("myInputContent").value;
+        if (inputValue01 == "") {
+          document.getElementById("demo").innerHTML = "Please write a title!";
+        }
+        else {
+          document.getElementById("demo").innerHTML = "";
+          entryy.data = "Title: " + inputValue01 + " | Content: " + inputValue02;
+        }
+      }
+      //era o alta versiune pentru edit
+      //    var p = prompt("Edit your title", TitleText);
+      //   {
+      //   if(TitleText == ""){
+      //   window.alert("Your title can't be empty");
+      //   this.parentElement.childNodes[0].data="";
+      //   var p = prompt("Edit your title", TitleText);
+      //   this.parentElement.childNodes[0].data="Title: " +p;
+      //   }
+      //   else{
+      //     this.parentElement.childNodes[0].data="Title: " +p;
+      //   }
+      // }
+      //    var p = prompt("Edit your content", ContentText);
+      //     this.parentElement.childNodes[0].data+=" | Content:" + p;
+    }
+  }
+}
 // functionalitatea butonului close
 function closeFunctionality() {
   var close = document.getElementsByClassName("close");
@@ -68,20 +114,16 @@ function inprogressFunctionality() {
       //nu se poate ajunge aici decat din starea initiala
       if (div.style.backgroundColor != "rgb(136, 136, 136)") {
         div.style.backgroundColor = "yellow";
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u2713");
+        span.className = "finish";
+        span.appendChild(txt);
+        div.appendChild(span);
       }
+      finishFunctionality();
       // div.classList.add("color-c");     alta modalitate
     };
   }
-}
-//butonul finish task, adaugat itemilor existenti
-var myNodelist = document.getElementsByTagName("LI");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u2713");
-  span.className = "finish";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
 }
 //functionalitatea butonului finish
 function finishFunctionality() {
@@ -99,20 +141,22 @@ function finishFunctionality() {
   }
 }
 // Nu o folosesc, am pastrat-o ca model pentru toggle
-// var list = document.querySelector("ul");
-// list.addEventListener(
-//   "click",   
-//   function (ev) {
-//     if (ev.target.tagName === "LI") {
-//       // ev.target.classList.toggle("checked");
-//       // ev.target.classList.add("checked");
-//       ev.target.style.backgroundColor= "#888";
-//       ev.target.style.color= "black";
-//       ev.target.style.textDecoration= "line-through";
-//     }
-//   },
-//   false
-// );
+var list = document.querySelector("ul");
+list.addEventListener(
+  "click",
+  function (ev) {
+    if (ev.target.tagName === "LI") {
+      var yes = ev.target.childNodes[0];
+      var res = yes.data.split(" | ");
+      var TitleText = res[0].substring(7);
+      var ContentText = res[1].substring(9);
+      console.log(TitleText);
+      console.log(ContentText);
+      document.getElementById("myInput").innerHTML = TitleText;
+    }
+  },
+  false
+);
 
 // creeaza un nou nod in lista la apasarea butonului add
 function newElement() {
@@ -122,9 +166,9 @@ function newElement() {
   var inputValue = 'Title:  ' + inputValue1 + ' | Content:' + inputValue2;
   var t = document.createTextNode(inputValue);
   li.appendChild(t);
-  if ((inputValue1 === "") && (inputValue2 === "")) {
+  if (inputValue1 === "") {
     // alert("You must write something in at least one input!");
-    document.getElementById("demo").innerHTML = "Please write something!";
+    document.getElementById("demo").innerHTML = "Please write a title!";
   } else {
     document.getElementById("myUL").appendChild(li);
     document.getElementById("demo").innerHTML = "";
@@ -143,16 +187,12 @@ function newElement() {
   span.className = "inprogress";
   span.appendChild(txt);
   li.appendChild(span);
-  //finish button adaugat noului item
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u2713");
-  span.className = "finish";
-  span.appendChild(txt);
-  li.appendChild(span);
   closeFunctionality();
   inprogressFunctionality();
-  finishFunctionality();
+  myEdit();
 }
 closeFunctionality();
 inprogressFunctionality();
 finishFunctionality();
+myEdit();
+$('#myUL').sortable();

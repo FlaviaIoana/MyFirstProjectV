@@ -8,9 +8,9 @@
   <meta name="description" content="user needs" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- <link href="css/normalize.css" rel="stylesheet"> -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" -->
+  <!-- integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" /> -->
   <link href="style.css" rel="stylesheet" />
 </head>
 
@@ -29,10 +29,11 @@
         <input type="text" id="myInput" placeholder="Title..." />
         <input type="text" id="myInputContent" placeholder="Content..." />
         <button onclick="newElement()" class="addBtn">Add</button>
+        <button onclick="editt()" id="editt">Edit</button>
       </div>
       <p id="demo"></p>
       <ul id="myUL" class="myUL">
-        <li id="ee" class="color-c">Title: Hit the gym | Content: Abs workout</li>
+        <li id="ee" class="color-c" contenteditable="true">Title: Hit the gym | Content: Abs workout</li>
         <li class="color-c">Title: Pay bills | Content: electricity</li>
         <li class="color-c">Title: Meet George | Content: Central Park 2 pm</li>
         <li class="color-c">Title: Buy eggs | Content: 10</li>
@@ -48,7 +49,9 @@
   <footer>
     Copyright &copy; 2020 - Flavia Spataru
   </footer>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
   <script src="main.js"></script>
 </body>
 
