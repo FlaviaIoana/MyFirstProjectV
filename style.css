@@ -3,6 +3,9 @@ nav {
   overflow: hidden;
   width: 100%;
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left:0px;
+  right:0px;
 }
 nav a {
   float: left;
@@ -29,7 +32,9 @@ nav .icon {
   display: none;
 }
 #myDIV {
-  min-width: 500px;
+  min-width: 90px;
+  /* left:0px; */
+  /* right:0px; */
 }
 .show {
   display: block;
@@ -53,7 +58,7 @@ ul {
   padding: 0;
 }
 ul li {
-  min-width: 600px;
+  /* min-width: 600px; */
   cursor: pointer;
   position: relative;
   padding: 12px 8px 12px 40px;
@@ -95,6 +100,27 @@ ul li.checked::before {
 }
 ul.myUL {
   list-style-type: none;
+}
+@media screen and (max-width: 800px) {
+  .myUL, #myDIV {
+     width: 100%; 
+    left:0px;
+    right:0px;
+  }
+  .close,.inprogress,.edit{
+    margin-top:16px;
+    right: 0px;
+    bottom: 0px;
+    padding: 0px;
+    width: 10px;
+    /* display: none; */
+    margin-left: 100px;
+    padding:0px;
+  }
+.addBtn,
+#editt {
+  padding:0px;
+}
 }
 /* sets the position of the finish button */
 .finish {
@@ -157,6 +183,7 @@ input {
 /* the add button */
 .addBtn,
 #editt {
+  /* margin-right: 10px; */
   padding: 10px;
   width: 25%;
   background: #d9d9d9;
@@ -167,6 +194,7 @@ input {
   cursor: pointer;
   transition: 0.3s;
   border-radius: 2px;
+  min-width: 45px;
 }
 .addBtn:hover,
 #editt:hover {
@@ -176,4 +204,13 @@ input {
 #demo {
   text-align: center;
   color: red;
+}
+.selector-for-some-widget {
+  box-sizing: content-box;
+}
+.tab-content-item {
+  padding: 7rem;
+}
+header{
+  text-align: center;
 }
