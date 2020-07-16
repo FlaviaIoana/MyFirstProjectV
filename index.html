@@ -7,10 +7,9 @@
   <meta name="author" content="flavia spataru" />
   <meta name="description" content="user needs" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> 
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
-   integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" /> 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
   <link href="style.css" rel="stylesheet" />
 </head>
 
@@ -24,16 +23,16 @@
   </header>
   <main>
     <div class="tab-content-item show" id="tasks-content">
-      <div id="myDIV" class="add-task">
+      <div id="tasks-form" class="add-task">
         <h2>My tasks</h2>
-        <input type="text" id="myInput" placeholder="Title..." />
-        <input type="text" id="myInputContent" placeholder="Content..." />
-        <button onclick="newElement()" class="addBtn">Add</button>
-        <button onclick="editt()" id="editt">Edit</button>
+        <input type="text" id="input-title" placeholder="Title..." />
+        <input type="text" id="input-content" placeholder="Content..." />
+        <button onclick="newElement()" class="add-btn">Add</button>
+        <button onclick="editTask()" class="edit-task" id="edit-task">Edit</button>
       </div>
-      <p id="demo"></p>
-      <ul id="myUL" class="myUL">
-        <li id="ee" class="color-c" contenteditable="true">Title: Hit the gym | Content: Abs workout</li>
+      <p id="error-message"></p>
+      <ul id="list" class="list">
+        <li class="color-c" contenteditable="true">Title: Hit the gym | Content: Abs workout</li>
         <li class="color-c">Title: Pay bills | Content: electricity</li>
         <li class="color-c">Title: Meet George | Content: Central Park 2 pm</li>
         <li class="color-c">Title: Buy eggs | Content: 10</li>
@@ -41,14 +40,14 @@
         <li class="color-c">Title: Organize office | Content: Take new plants</li>
       </ul>
     </div>
-    <div class="tab-content-item show" id="faq-content"></div>
-   
+    <div class="tab-content-item show" id="faq-content">FAQ content</div>
+
     <div class="tab-content-item show" id="contact-content">
       <form>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="firstName">First name</label>
-            <input type="text" class="form-control" id="firstName"  placeholder="John">
+            <input type="text" class="form-control" id="firstName" placeholder="John">
           </div>
           <div class="form-group col-md-6">
             <label for="lastName">Last name</label>
@@ -59,19 +58,19 @@
           <label for="inputEmail">Email</label>
           <input type="email" class="form-control" id="inputEmail" placeholder="john.smith@gmail.com">
         </div>
-          <div class="form-group">
-            <label for="subjects">Subjects</label>
-            <select id="subjects" class="form-control">
-              <option selected>Bug</option>
-              <option>Information</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="message">Your message</label>
-            <textarea class="form-control" id="message" rows="3"></textarea>
-          </div>
-        
+        <div class="form-group">
+          <label for="subjects">Subjects</label>
+          <select id="subjects" class="form-control">
+            <option selected>Bug</option>
+            <option>Information</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Your message</label>
+          <textarea class="form-control" id="message" rows="3"></textarea>
+        </div>
+
         <button type="submit" class="btn btn-primary" id="signIn">Sign in</button>
       </form>
       <p id="informations"></p>
@@ -80,7 +79,6 @@
   <footer>
     Copyright &copy; 2020 - Flavia Spataru
   </footer>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
   <script src="main.js"></script>

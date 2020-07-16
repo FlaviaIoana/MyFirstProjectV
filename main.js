@@ -1,26 +1,24 @@
 const tabItems = document.querySelectorAll(".tab-item");
 const tabContentItems = document.querySelectorAll(".tab-content-item");
 const inProgressItems = document.querySelectorAll(".color-c");
-// functia removeShow face sa nu apara continutul tututor taburilor
-removeShow();
-// selecteaza pagina (tabul) care sa se afiseze initial si butonul acesteia activat
-document.querySelector("#tasks-content").classList.add("show");
-document.querySelector("#tasks").classList.add("active");
 
 function selectItem(e) {
   removeShow();
-  console.log(this.id);
   const tabItem = document.querySelector(`#${this.id}`);
   const tabContentItem = document.querySelector(`#${this.id}-content`);
   console.log(tabContentItem);
   tabContentItem.classList.add("show");
   tabItem.classList.add("active");
 }
-
-function removeShow() {
+// functia removeShow face sa nu apara continutul tututor taburilor deodata
+const removeShow = () => {
   tabContentItems.forEach((item) => item.classList.remove("show"));
   tabItems.forEach((item) => item.classList.remove("active"));
 }
+removeShow();
+// selecteaza pagina (tabul) care sa se afiseze initial si butonul acesteia activat
+document.querySelector("#tasks-content").classList.add("show");
+document.querySelector("#tasks").classList.add("active");
 
 tabItems.forEach((item) => {
   item.addEventListener("click", selectItem);
@@ -28,85 +26,82 @@ tabItems.forEach((item) => {
 
 // butonul close alaturat fiecarui nod existent
 const myNodelist = document.getElementsByClassName("color-c");
-for (let i = 0; i < myNodelist.length; i++) {
-  const span = document.createElement("SPAN");
-  const txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
+Array.prototype.forEach.call(myNodelist, li => {
+  const spanClose = document.createElement("SPAN");
+  const txtClose = document.createTextNode("\u00D7");
+  spanClose.className = "close";
+  spanClose.appendChild(txtClose);
+  console.log(li);
+  li.appendChild(spanClose);
 }
-function myEdit() {
-  for (i = 0; i < myNodelist.length; i++) {
-    const edit = document.createElement("SPAN");
-    const eText = document.createTextNode("\u270E");
-    edit.className = "edit";
-    edit.appendChild(eText);
-    myNodelist[i].appendChild(edit);
-    edit.onclick = function merge() {
-      let entryy = this.parentElement.childNodes[0];
-      let res = entryy.data.split(" | ");
-      let TitleText = res[0].substring(7);
-      let n = res[1].indexOf("Content: ");
-      let ContentText = res[1].substring(n + 9);
-      console.log(TitleText + '\n' + ContentText);
-      editt = document.getElementById("editt");
-      document.getElementById("myInput").value = TitleText;
-      document.getElementById("myInputContent").value = ContentText;
+)
+//butonul edit alaturat itmilor existenti
+Array.prototype.forEach.call(myNodelist, li => {
+  var edit = document.createElement("SPAN");
+  var eText = document.createTextNode("\u270E");
+  edit.className = "edit";
+  edit.appendChild(eText);
+  li.appendChild(edit);
+})
 
-      editt.onclick = function () {
-        let inputValue01 = document.getElementById("myInput").value;
-        let inputValue02 = document.getElementById("myInputContent").value;
-        if (inputValue01 == "") {
-          document.getElementById("demo").innerHTML = "Please write a title!";
-        }
-        else {
-          document.getElementById("demo").innerHTML = "";
-          entryy.data = "Title: " + inputValue01 + " | Content: " + inputValue02;
-        }
-      }
-      //era o alta versiune pentru edit
-      //    var p = prompt("Edit your title", TitleText);
-      //   {
-      //   if(TitleText == ""){
-      //   window.alert("Your title can't be empty");
-      //   this.parentElement.childNodes[0].data="";
-      //   var p = prompt("Edit your title", TitleText);
-      //   this.parentElement.childNodes[0].data="Title: " +p;
-      //   }
-      //   else{
-      //     this.parentElement.childNodes[0].data="Title: " +p;
-      //   }
-      // }
-      //    var p = prompt("Edit your content", ContentText);
-      //     this.parentElement.childNodes[0].data+=" | Content:" + p;
-    }
-  }
+//adaugarea butonului in progress fiecarui item existent
+const inprogress = document.getElementsByClassName("inprogress");
+Array.prototype.forEach.call(myNodelist, li => {
+  const spanProg = document.createElement("SPAN");
+  const txtProg = document.createTextNode("\u00AB");
+  spanProg.className = "inprogress";
+  spanProg.appendChild(txtProg);
+  li.appendChild(spanProg)
+  console.log(li);
 }
+)
+
 // functionalitatea butonului close
-function closeFunctionality() {
+const closeFunctionality = () => {
   const close = document.getElementsByClassName("close");
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function () {
-      let div = this.parentElement;
+  Array.prototype.forEach.call(close, node => {
+    node.onclick = function () {
+      const div = this.parentElement;
       div.style.display = "none";
     };
-  }
+  })
 }
-//adaugarea butonului in progress fiecarui item existent
-let inprogress = document.getElementsByClassName("inprogress");
-for (i = 0; i < myNodelist.length; i++) {
-  const span = document.createElement("SPAN");
-  const txt = document.createTextNode("\u00AB");
-  span.className = "inprogress";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
+
+const editTask = () => {
+  const edit = document.getElementsByClassName("edit");
+  Array.prototype.forEach.call(edit, node => {
+    node.onclick = function () {
+      var entry = this.parentElement.childNodes[0];
+      var userResult = entry.data.split(" | ");
+      var TitleText = userResult[0].substring(7);
+      var n = userResult[1].indexOf("Content: ");
+      var ContentText = userResult[1].substring(n + 9);
+      console.log(TitleText + '\n' + ContentText);
+      editButton = document.getElementById("edit-task");
+      document.getElementById("input-title").value = TitleText;
+      document.getElementById("input-content").value = ContentText;
+
+      editButton.onclick = function () {
+        var inputTitle = document.getElementById("input-title").value;
+        var inputContent = document.getElementById("input-content").value;
+        if (inputTitle == "") {
+          document.getElementById("error-message").innerHTML = "Please write a title!";
+        }
+        else {
+          document.getElementById("error-message").innerHTML = "";
+          entry.data = "Title: " + inputTitle + " | Content: " + inputContent;
+        }
+      }
+    }
+  })
 }
+
 //functionalitatea butonului "in progress"
-function inprogressFunctionality() {
-  let inprog = document.getElementsByClassName("inprogress");
-  for (i = 0; i < inprog.length; i++) {
-    inprog[i].onclick = function () {
-      let div = this.parentElement;
+const inprogressFunctionality = () => {
+  const inprog = document.getElementsByClassName("inprogress");
+  Array.prototype.forEach.call(inprog, node => {
+    node.onclick = function () {
+      const div = this.parentElement;
       console.log(div);
       //nu se poate ajunge aici decat din starea initiala
       if (div.style.backgroundColor != "rgb(136, 136, 136)") {
@@ -120,109 +115,108 @@ function inprogressFunctionality() {
       finishFunctionality();
       // div.classList.add("color-c");     alta modalitate
     };
-  }
+  })
 }
 //functionalitatea butonului finish
-function finishFunctionality() {
-  let finish = document.getElementsByClassName("finish");
-  for (i = 0; i < finish.length; i++) {
-    finish[i].onclick = function () {
-      let div = this.parentElement;
+const finishFunctionality = () => {
+  const finish = document.getElementsByClassName("finish");
+  Array.prototype.forEach.call(finish, node => {
+    node.onclick = function () {
+      const div = this.parentElement;
       //doar daca a fost in progres inainte
       if (div.style.backgroundColor == "yellow") {
         div.style.backgroundColor = "rgb(136, 136, 136)";
         div.classList.add("checked");
       }
     };
-  }
+  })
 }
-
+//functie folosita la creare butoanelor itemilor adaugati de utilizator
+const currentNodes = (spanx, txt, name, li) => {
+  spanx.className = name;
+  spanx.appendChild(txt);
+  li.appendChild(spanx);
+}
 // creeaza un nou nod in lista la apasarea butonului add
-function newElement() {
+const newElement = () => {
   const li = document.createElement("li");
-  let inputValue1 = document.getElementById("myInput").value;
-  let inputValue2 = document.getElementById("myInputContent").value;
+  let inputTitle = document.getElementById("input-title").value;
+  let inputContent = document.getElementById("input-content").value;
   const title = "Title";
-  const content="Content";
-  let inputValue = `${title}: ` + inputValue1 + ` | ${content}: ` + inputValue2;
-  let t = document.createTextNode(inputValue);
-  li.appendChild(t);
-  if (inputValue1 === "") {
-    // alert("You must write something in at least one input!");
-    document.getElementById("demo").innerHTML = "Please write a title!";
+  const content = "Content";
+  let inputValue = `${title}: ` + inputTitle + ` | ${content}: ` + inputContent;
+  let textNode = document.createTextNode(inputValue);
+  li.appendChild(textNode);
+  if (inputTitle === "") {
+    document.getElementById("error-message").innerHTML = "Please write a title!";
   } else {
-    document.getElementById("myUL").appendChild(li);
-    document.getElementById("demo").innerHTML = "";
+    document.getElementById("list").appendChild(li);
+    document.getElementById("error-message").innerHTML = "";
   }
-  document.getElementById("myInput").value = "";
-  document.getElementById("myInputContent").value = "";
-  //close button adaugat noului item
-  const span = document.createElement("SPAN");
-  const txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  li.appendChild(span);
+  document.getElementById("input-title").value = "";
+  document.getElementById("input-content").value = "";
+  //close button adaugat noului item cu reutilizare de cod
+  const spanClose = document.createElement("SPAN");
+  const txtClose = document.createTextNode("\u00D7");
+  currentNodes(spanClose, txtClose, "close", li);
   //in progress button adaugat noului item
-  const span2 = document.createElement("SPAN");
-  const txt2 = document.createTextNode("\u00AB");
-  span2.className = "inprogress";
-  span2.appendChild(txt2);
-  li.appendChild(span2);
+  const spanPrg = document.createElement("SPAN");
+  const txtPrg = document.createTextNode("\u00AB");
+  currentNodes(spanPrg, txtPrg, "inprogress", li);
+  //edit button adaugat noului item
+  const spanEdit = document.createElement("SPAN");
+  const txtEdit = document.createTextNode("\u270E");
+  currentNodes(spanEdit, txtEdit, "edit", li)
+
+  editTask();
   closeFunctionality();
   inprogressFunctionality();
-  myEdit();
+
 }
 closeFunctionality();
 inprogressFunctionality();
-finishFunctionality();
-myEdit();
-$('#myUL').sortable();
+editTask();
+$('list').sortable();
 const signIn = document.getElementById("signIn");
 
 
-  signIn.onclick = function () {
-    let firstName = document.getElementById("firstName").value;
-    let lastName = document.getElementById("lastName").value;
-    let email = document.getElementById("inputEmail").value;
-    let subjects = document.getElementById("subjects").value;
-    let message = document.getElementById("message").value;
-    const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    const messageFormat=/^.{10,}$/;
-    const info = {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      subjects: subjects,
-      message: message,
-      // print: function() {
-      //   alert(this.firstName);
-      // }
-    };
-    // var n = email.indexOf("@"); 
-    const firstN="First name";
-    const lastN="Last name";
-    const emaill="Email";
-    const subjectss="Subjects"
-    const messagee="Message"
-    if(email.match(mailFormat) && message.match(messageFormat))
-    {
-      document.getElementById("informations").innerHTML= `{&quot${firstN}&quot: ` + info.firstName+ "<br />"+ `&quot${lastN}&quot: ` + info.lastName+
-      "<br />"+ `&quot${emaill}&quot: ` + info.email+"<br />"+ `&quot${subjectss}&quot: ` + info.subjects+ "<br />"+`&quot${messagee}&quot: ` + info.message+ "<br />"+`}`;
-      // firstName+'   '+ lastName+'   '+email+'   '+subjects + ' ' + message;
-      document.getElementById("firstName").value="";
-      document.getElementById("lastName").value="";
-      document.getElementById("inputEmail").value="";
-      document.getElementById("subjects").value="";
-      document.getElementById("message").value="";
-    }   
-    else if (email.match(mailFormat)){
-      document.getElementById("informations").innerHTML="Mesajul dvs trebuie sa contina cel putin 10 caractere";
-    }
-    else if (message.match(messageFormat)){
-      document.getElementById("informations").innerHTML="Email-ul este invalid!";
-    }
-    else{
-      document.getElementById("informations").innerHTML="Mesajul dvs trebuie sa contina 10 caractere, iar mailul trebuie sa aiba format corespunzator"
-    }
+signIn.onclick = function () {
+  let firstName = document.getElementById("firstName").value;
+  let lastName = document.getElementById("lastName").value;
+  let email = document.getElementById("inputEmail").value;
+  let subjects = document.getElementById("subjects").value;
+  let message = document.getElementById("message").value;
+  const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const messageFormat = /^.{10,}$/;
+  const info = {
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    subjects: subjects,
+    message: message
+  };
+  // var n = email.indexOf("@"); 
+  const firstNString = "First name";
+  const lastNString = "Last name";
+  const emailString = "Email";
+  const subjectsString = "Subjects"
+  const messageString = "Message"
+  if (email.match(mailFormat) && message.match(messageFormat)) {
+    document.getElementById("informations").innerHTML = `{&quot${firstNString}&quot: ` + info.firstName + "<br />" + `&quot${lastNString}&quot: ` + info.lastName +
+      "<br />" + `&quot${emailString}&quot: ` + info.email + "<br />" + `&quot${subjectsString}&quot: ` + info.subjects + "<br />" + `&quot${messageString}&quot: ` + info.message + "<br />" + `}`;
+    document.getElementById("firstName").value = "";
+    document.getElementById("lastName").value = "";
+    document.getElementById("inputEmail").value = "";
+    document.getElementById("subjects").value = "";
+    document.getElementById("message").value = "";
   }
-  
+  else if (email.match(mailFormat)) {
+    document.getElementById("informations").innerHTML = "Mesajul dvs trebuie sa contina cel putin 10 caractere";
+  }
+  else if (message.match(messageFormat)) {
+    document.getElementById("informations").innerHTML = "Email-ul este invalid!";
+  }
+  else {
+    document.getElementById("informations").innerHTML = "Mesajul dvs trebuie sa contina 10 caractere, iar mailul trebuie sa aiba format corespunzator"
+  }
+}
