@@ -19,6 +19,7 @@
       <a href="#tasks" class="tab-item active" id="tasks">Tasks</a>
       <a href="#faq" class="tab-item active" id="faq">FAQ</a>
       <a href="#contact" class="tab-item active" id="contact">Contact us</a>
+      <a href="#game" class="tab-item active" id="game">Game</a>
     </nav>
   </header>
   <main>
@@ -41,20 +42,20 @@
       </ul>
     </div>
     <div class="tab-content-item show" class="faq-content" id="faq-content">
-      <p>Collapsible Set:</p>
-<button class="collapsible">Open Section 1</button>
+    
+<button class="collapsible">Where do babies come from?</button>
+<div class="content">
+  <p>Children are notorious for asking funny and sometimes inappropriate questions. However, if your kid is asking about where babies come from or how they're made, you should try to give them an honest answer that they can understand. This will help to prepare them for their future as they're growing up and experiencing the world. When they ask, be sure to assess the situation and tailor your response to be age-appropriate..</p>
+</div>
+<button class="collapsible">When we will get there?</button>
 <div class="content">
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 </div>
-<button class="collapsible">Open Section 2</button>
+<button class="collapsible">Why is the sky blue?</button>
 <div class="content">
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 </div>
-<button class="collapsible">Open Section 3</button>
-<div class="content">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
-<button class="collapsible">Open Section 4</button>
+<button class="collapsible">Why is the snoq white?</button>
 <div class="content">
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 </div>
@@ -92,6 +93,23 @@
         <button type="submit" class="btn btn-primary" id="signIn">Sign in</button>
       </form>
       <p id="informations"></p>
+    </div>
+    <div class="tab-content-item show" id="game-content">
+      <div class="board" id="board">
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+      </div>
+      <div class="winning-message" id="winningMessage">
+        <div data-winning-message-text></div>
+        <button id="restartButton">Restart</button>
+      </div>
     </div>
   </main>
   <footer>
